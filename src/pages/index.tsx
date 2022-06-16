@@ -1,61 +1,32 @@
-import {
-  Flex,
-  Input,
-  Button,
-  Stack,
-  FormLabel,
-  FormControl,
-} from "@chakra-ui/react";
+import Head from "next/head";
+import { Flex, Button, Stack } from "@chakra-ui/react";
+import { Input } from "components/Input";
 
-export default function Home() {
+export default function SignIn() {
   return (
-    <Flex w="100vw" h="100vh" align="center" justify="center">
-      <Flex
-        as="form"
-        direction="column"
-        width="100%"
-        maxWidth={360}
-        bg="gray.800"
-        p="8"
-        borderRadius={8}
-      >
-        <Stack spacing="4">
-          <FormControl>
-            <FormLabel htmlFor="email">Email</FormLabel>
-            <Input
-              id="email"
-              name="email"
-              type="email"
-              focusBorderColor="pink.500"
-              bg="gray.900"
-              variant="filled"
-              _hover={{
-                bg: "gray.900",
-              }}
-              size="lg"
-            />
-          </FormControl>
-
-          <FormControl>
-          <FormLabel htmlFor="password">Senha</FormLabel>
-            <Input
-              id="password"
-              name="password"
-              type="password"
-              focusBorderColor="pink.500"
-              variant="filled"
-              bg="gray.900"
-              _hover={{
-                bg: "gray.900",
-              }}
-              size="lg"
-            />
-          </FormControl>
-        </Stack>
-        <Button type="submit" mt="6" colorScheme="pink" size="lg">
-          Entrar
-        </Button>
+    <>
+      <Head>
+        <title>Sign-in | Dashgo</title>
+      </Head>
+      <Flex w="100vw" h="100vh" align="center" justify="center">
+        <Flex
+          as="form"
+          direction="column"
+          width="100%"
+          maxWidth={360}
+          bg="gray.800"
+          p="8"
+          borderRadius={8}
+        >
+          <Stack spacing="4">
+            <Input name="email" label="email" type="email" />
+            <Input name="password" label="senha" type="password" />
+          </Stack>
+          <Button type="submit" mt="6" colorScheme="pink" size="lg">
+            Entrar
+          </Button>
+        </Flex>
       </Flex>
-    </Flex>
+    </>
   );
 }
