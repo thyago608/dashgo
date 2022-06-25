@@ -17,10 +17,10 @@ export default function Dashboard() {
       </Head>
       <Flex direction="column" h="100vh">
         <Header />
-        <Flex w="100%" my="6" maxWidth={1200} mx="auto" px="6">
+        <Flex w="100%" my="6" justify="center" maxWidth={1200} mx="auto" px="6">
           <Sidebar />
-          <SimpleGrid flex="1" gap="4" minChildWidth="320px">
-            <Box p="8" bg="gray.800" borderRadius={8} pb="4">
+          <SimpleGrid flex="1" gap="4" minChildWidth="280px">
+            <Box p={["6","8"]} bg="gray.800" borderRadius={8} pb="4">
               <Text fontSize="lg" mb="4">
                 Inscritos da semana
               </Text>
@@ -31,7 +31,7 @@ export default function Dashboard() {
                 height={160}
               />
             </Box>
-            <Box p="8" bg="gray.800" borderRadius={8} pb="4">
+            <Box p={["6","8"]} bg="gray.800" borderRadius={8} pb="4">
               <Text fontSize="lg" mb="4">
                 Taxa de abertura
               </Text>
