@@ -39,11 +39,10 @@ export default function UserList() {
             flex="1"
             borderRadius={6}
             bg="gray.800"
-            px={["3", "8"]}
-            py={["6","8"]}
+            p={["5", "8"]}
           >
             <Flex mb="8" justify="space-between" align="center">
-              <Heading size="lg" fontWeight="normal">
+              <Heading size={["md", "lg"]} fontWeight="normal">
                 Usuários
               </Heading>
               <Button
@@ -80,8 +79,10 @@ export default function UserList() {
                   </Td>
                   <Td>
                     <Box>
-                      <Text fontWeight="bold">Thyago Ribeiro</Text>
-                      <Text fontSize="sm" color="gray.300">
+                      <Text fontWeight="bold" fontSize={["sm", "md"]}>
+                        Thyago Ribeiro
+                      </Text>
+                      <Text fontSize={["xs","sm"]} color="gray.300">
                         thyagoribeiro608@gmail.com
                       </Text>
                     </Box>

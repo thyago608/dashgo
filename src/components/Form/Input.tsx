@@ -8,7 +8,7 @@ type InputProps = ChakraInputProps & {
 export function Input({name, label, ...rest}:InputProps){
     return(
         <FormControl>
-        {!!label && <FormLabel htmlFor={name} textTransform="capitalize">{label}</FormLabel>}
+        {!!label && <FormLabel htmlFor={name} textTransform="capitalize" fontSize={["sm","md"]}>{label}</FormLabel>}
         <ChakraInput
           id={name}
           name={name}
@@ -18,7 +18,7 @@ export function Input({name, label, ...rest}:InputProps){
           _hover={{
             bg: "gray.900", 
           }}
-          size="lg"
+          size={["md","lg"]}
           {...rest}
         />
       </FormControl>

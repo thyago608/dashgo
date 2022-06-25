@@ -10,7 +10,7 @@ export function Pagination() {
         align="center" 
         spacing="6"
       >
-      <Box>
+      <Box fontSize={["sm","md"]}>
         <strong>0</strong> - <strong>10</strong> de <strong>100</strong>
       </Box>
       <HStack spacing="2">
