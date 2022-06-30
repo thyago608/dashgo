@@ -19,6 +19,7 @@ import { Sidebar } from "components/Sidebar";
 import { Header } from "components/Header";
 import { RiAddLine, RiPencilLine } from "react-icons/ri";
 import { Pagination } from "components/Pagination";
+import Link from "next/link";
 
 export default function UserList() {
   const isWideVersion = useBreakpointValue({
@@ -35,26 +36,23 @@ export default function UserList() {
         <Header />
         <Flex w="100%" my="6" maxWidth={1200} mx="auto" px="6" justify="center">
           <Sidebar />
-          <Box
-            flex="1"
-            borderRadius={6}
-            bg="gray.800"
-            p={["5", "8"]}
-          >
+          <Box flex="1" borderRadius={6} bg="gray.800" p={["5", "8"]}>
             <Flex mb="8" justify="space-between" align="center">
               <Heading size={["md", "lg"]} fontWeight="normal">
                 Usuários
               </Heading>
-              <Button
-                as="a"
-                size="sm"
-                fontSize="sm"
-                colorScheme="pink"
-                leftIcon={<Icon as={RiAddLine} fontSize="20" />}
-                cursor="pointer"
-              >
-                Criar novo
-              </Button>
+              <Link href="/users/create" passHref>
+                <Button
+                  as="a"
+                  size="sm"
+                  fontSize="sm"
+                  colorScheme="pink"
+                  leftIcon={<Icon as={RiAddLine} fontSize="20" />}
+                  cursor="pointer"
+                >
+                  Criar novo
+                </Button>
+              </Link>
             </Flex>
 
             <Table colorScheme="whiteAlpha">
@@ -82,7 +80,7 @@ export default function UserList() {
                       <Text fontWeight="bold" fontSize={["sm", "md"]}>
                         Thyago Ribeiro
                       </Text>
-                      <Text fontSize={["xs","sm"]} color="gray.300">
+                      <Text fontSize={["xs", "sm"]} color="gray.300">
                         thyagoribeiro608@gmail.com
                       </Text>
                     </Box>
