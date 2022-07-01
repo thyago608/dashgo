@@ -1,5 +1,6 @@
 import Head from "next/head";
 import { Flex, Button, Stack, useBreakpointValue } from "@chakra-ui/react";
+import { useForm } from "react-hook-form";
 import { Input } from "components/Form/Input";
 import { Logo } from "components/Header/Logo";
 
@@ -9,6 +10,8 @@ export default function SignIn() {
     lg: "12",
 
   });
+
+  const { register, handleSubmit } = useForm();
 
   return (
     <>
@@ -45,8 +48,16 @@ export default function SignIn() {
           mt="15"
         >
           <Stack spacing="4">
-            <Input name="email" label="email" type="email" />
-            <Input name="password" label="senha" type="password" />
+            <Input 
+              label="email" 
+              type="email" 
+              {...register('email')}
+            />
+            <Input 
+               label="senha" 
+               type="password"
+                {...register('password')}   
+            />
           </Stack>
           <Button type="submit" mt="6" colorScheme="pink" size={["md", "lg"]}>
             Entrar
