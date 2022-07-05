@@ -1,8 +1,13 @@
 import Head from "next/head";
 import { Flex, Button, Stack, useBreakpointValue } from "@chakra-ui/react";
-import { useForm } from "react-hook-form";
+import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "components/Form/Input";
 import { Logo } from "components/Header/Logo";
+
+type SignInFormData = {
+  email:string;
+  password:string;
+};
 
 export default function SignIn() {
   const spacingTopLogo = useBreakpointValue({
@@ -11,7 +16,11 @@ export default function SignIn() {
 
   });
 
-  const { register, handleSubmit } = useForm();
+  const { register, handleSubmit, formState } = useForm<SignInFormData>();
+
+  const handleSignIn:SubmitHandler<SignInFormData> = async (values) => {
+     await new Promise(resolve => setTimeout(resolve, 2000));
+    };
 
   return (
     <>
@@ -46,6 +55,7 @@ export default function SignIn() {
           px={["6", "8"]}
           borderRadius={8}
           mt="15"
+          onSubmit={handleSubmit(handleSignIn)}
         >
           <Stack spacing="4">
             <Input 
@@ -59,7 +69,13 @@ export default function SignIn() {
                 {...register('password')}   
             />
           </Stack>
-          <Button type="submit" mt="6" colorScheme="pink" size={["md", "lg"]}>
+          <Button 
+            type="submit" 
+            mt="6" 
+            colorScheme="pink" 
+            size={["md", "lg"]}
+            isLoading={formState.isSubmitting}
+          >
             Entrar
           </Button>
         </Flex>
