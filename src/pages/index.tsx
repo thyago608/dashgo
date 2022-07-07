@@ -1,6 +1,8 @@
 import Head from "next/head";
 import { Flex, Button, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import { Input } from "components/Form/Input";
 import { Logo } from "components/Header/Logo";
 
@@ -9,6 +11,11 @@ type SignInFormData = {
   password:string;
 };
 
+const signInFormDataSchema = yup.object().shape({
+  email: yup.string().required('E-mail obrigatório').email('E-mail inválido'),
+  password: yup.string().required('Senha obrigatória')
+});
+
 export default function SignIn() {
   const spacingTopLogo = useBreakpointValue({
     base: "8",
@@ -16,11 +23,17 @@ export default function SignIn() {
 
   });
 
-  const { register, handleSubmit, formState } = useForm<SignInFormData>();
+  const { 
+      register, 
+      handleSubmit, 
+      formState: { errors, isSubmitting } 
+  } = useForm<SignInFormData>({
+      resolver: yupResolver(signInFormDataSchema)
+  });
 
   const handleSignIn:SubmitHandler<SignInFormData> = async (values) => {
      await new Promise(resolve => setTimeout(resolve, 2000));
-    };
+  };
 
   return (
     <>
@@ -61,12 +74,14 @@ export default function SignIn() {
             <Input 
               label="email" 
               type="email" 
+              error={errors}
               {...register('email')}
             />
             <Input 
                label="senha" 
                type="password"
-                {...register('password')}   
+               error={errors}
+              {...register('password')}   
             />
           </Stack>
           <Button 
@@ -74,7 +89,7 @@ export default function SignIn() {
             mt="6" 
             colorScheme="pink" 
             size={["md", "lg"]}
-            isLoading={formState.isSubmitting}
+            isLoading={isSubmitting}
           >
             Entrar
           </Button>
