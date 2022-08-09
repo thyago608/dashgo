@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useEffect } from "react";
+import { useRouter } from "next/router";
 import { Flex, Button, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -32,13 +32,13 @@ export default function SignIn() {
     resolver: yupResolver(signInFormDataSchema)
   });
 
+  const router = useRouter();
+
   const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
     await new Promise(resolve => setTimeout(resolve, 2000));
-  };
 
-  useEffect(() => {
-    fetch('http://localhost:3000/api/users').then(response => response.json()).then(data => console.log(data))
-  }, []);
+    router.push('/users');
+  };
 
   return (
     <>
