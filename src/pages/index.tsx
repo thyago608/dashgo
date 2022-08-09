@@ -1,4 +1,5 @@
 import Head from "next/head";
+import { useEffect } from "react";
 import { Flex, Button, Stack, useBreakpointValue } from "@chakra-ui/react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import * as yup from "yup";
@@ -7,8 +8,8 @@ import { Input } from "components/Form/Input";
 import { Logo } from "components/Header/Logo";
 
 type SignInFormData = {
-  email:string;
-  password:string;
+  email: string;
+  password: string;
 };
 
 const signInFormDataSchema = yup.object().shape({
@@ -23,17 +24,21 @@ export default function SignIn() {
 
   });
 
-  const { 
-      register, 
-      handleSubmit, 
-      formState: { errors, isSubmitting } 
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting }
   } = useForm<SignInFormData>({
-      resolver: yupResolver(signInFormDataSchema)
+    resolver: yupResolver(signInFormDataSchema)
   });
 
-  const handleSignIn:SubmitHandler<SignInFormData> = async (values) => {
-     await new Promise(resolve => setTimeout(resolve, 2000));
+  const handleSignIn: SubmitHandler<SignInFormData> = async (values) => {
+    await new Promise(resolve => setTimeout(resolve, 2000));
   };
+
+  useEffect(() => {
+    fetch('http://localhost:3000/api/users').then(response => response.json()).then(data => console.log(data))
+  }, []);
 
   return (
     <>
@@ -71,23 +76,23 @@ export default function SignIn() {
           onSubmit={handleSubmit(handleSignIn)}
         >
           <Stack spacing="4">
-            <Input 
-              label="email" 
-              type="email" 
+            <Input
+              label="email"
+              type="email"
               error={errors}
               {...register('email')}
             />
-            <Input 
-               label="senha" 
-               type="password"
-               error={errors}
-              {...register('password')}   
+            <Input
+              label="senha"
+              type="password"
+              error={errors}
+              {...register('password')}
             />
           </Stack>
-          <Button 
-            type="submit" 
-            mt="6" 
-            colorScheme="pink" 
+          <Button
+            type="submit"
+            mt="6"
+            colorScheme="pink"
             size={["md", "lg"]}
             isLoading={isSubmitting}
           >
